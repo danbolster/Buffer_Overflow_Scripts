@@ -84,7 +84,7 @@ Finally the exploit script for the shellcode
 - `exploit.py` can also convert a return address (ex. `1234ABCD`) into little endian (ex. `\xcd\xab\x34\x12`)
 
 usage #1: `./exploit.py [target ip] [target port] [size] [eip]`</br>
-usage #2: `./exploit.py [return adderss]`
+usage #2: `./exploit.py [return address]`
 
 <hr>
 
@@ -92,5 +92,5 @@ usage #2: `./exploit.py [return adderss]`
 
 In case you don't have a copy of all the hex characters, this will generate them quickly for you
 
-usage: `python charlist.py`
+usage: `./charlist.py`
 
