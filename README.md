@@ -69,7 +69,7 @@ Before inserting shellcode, this script can target the jump address to verify th
 - the 'ret' variable must be changed within the script to the corresponding jump location
 - `jump.py` can also convert a return address (ex. `1234ABCD`) into little endian (ex. `\xcd\xab\x34\x12`)
 
-usage #1: `./jump.py [target ip] [target port] [size] [eip]`
+usage #1: `./jump.py [target ip] [target port] [size] [eip]`</br>
 usage #2: `./jump.py [return adderss]`
 
 <hr>
@@ -83,7 +83,7 @@ Finally the exploit script for the shellcode
 - the 'ret' variable must be changed within the script to the corresponding jump location
 - `exploit.py` can also convert a return address (ex. `1234ABCD`) into little endian (ex. `\xcd\xab\x34\x12`)
 
-usage #1: `./exploit.py [target ip] [target port] [size] [eip]`
+usage #1: `./exploit.py [target ip] [target port] [size] [eip]`</br>
 usage #2: `./exploit.py [return adderss]`
 
 <hr>
