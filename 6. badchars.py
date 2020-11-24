@@ -5,7 +5,7 @@ import time
 import sys
 
 if len(sys.argv) < 4:
-    print("usage: \"python target.py [target] [port] [size]\"")
+    print("usage: \"python badchars.py [target] [port] [size]\"")
     exit(0)
 
 target = sys.argv[1]

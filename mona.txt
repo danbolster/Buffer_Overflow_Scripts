@@ -6,3 +6,13 @@ Generate an array of bytes
 
 Compare the array to the byte array
 !mona compare -f C:\mona\[appname]\bytearray.bin -a [address]
+
+
+Finding vulnerable module:
+!mona modules
+
+Locating Jump Location
+!mona find -s \xff\xe4 -m [module]
+
+
+
