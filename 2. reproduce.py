@@ -12,7 +12,13 @@ target = sys.argv[1]
 port = int(sys.argv[2])
 size = int(sys.argv[3])
 
-inputBuffer = "A" * size
+if len(sys.argv) == 5:
+    cmd = sys.argv[4] + " "
+else:
+    cmd = ""
+
+
+inputBuffer = cmd + "A" * (size - len(cmd))
 
 s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 s.connect((target,port))

@@ -6,18 +6,21 @@ import sys
 
 
 if len(sys.argv) < 3:
-    print("usage: \"./fuzz.py [target] [port]\"")
+    print("usage: \"./fuzz.py [target] [port] [cmd]\"")
     exit(0)
-
 
 target = sys.argv[1]
 port = int(sys.argv[2])
 size = 100
+if len(sys.argv) == 4:
+    cmd = sys.argv[3] + " "
+else:
+    cmd = ""
 
 while size < 10000:
 
     try:
-        inputBuffer = "A" * size
+        inputBuffer = cmd + "A" * (size - len(cmd))
         s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
         s.connect((target,port))
         s.send(inputBuffer)
@@ -32,6 +35,4 @@ while size < 10000:
     except:
         print("died at " + str(size - 100) + " bytes")
         exit(0)
-
-
 

