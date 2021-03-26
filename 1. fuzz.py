@@ -17,6 +17,9 @@ if len(sys.argv) == 4:
 else:
     cmd = ""
 
+cmd = cmd.lstrip(" ")
+
+
 while size < 10000:
 
     try:

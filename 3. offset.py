@@ -14,12 +14,17 @@ cmd = ""
 target = sys.argv[1]
 port = int(sys.argv[2])
 
+offset = "replace me!"
+
+
 if len(sys.argv) == 4:
     cmd = sys.argv[3] + " "
 else:
     cmd = ""
-    
-inputBuffer = cmd + "replace me!"
+
+cmd = cmd.lstrip(" ")
+
+inputBuffer = cmd + offset
 
 if inputBuffer == cmd + "replace me!":
     print("usage: you need to replace the buffer with a pattern offset!")
